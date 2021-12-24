@@ -1,0 +1,12 @@
+{
+    "name": "rezky/api-formatter",
+    "description": "api result formatter",
+    "type": "library",
+    "authors": [
+        {
+            "name": "rezky08",
+            "email": "rezky.setiawan85@gmail.com"
+        }
+    ],
+    "require": {}
+}
