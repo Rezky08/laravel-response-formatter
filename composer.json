@@ -1,7 +1,12 @@
 {
     "name": "rezky/api-formatter",
-    "description": "api result formatter",
+    "description": "result api formatter",
     "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Rezky\\ApiFormatter\\": "src/"
+        }
+    },
     "authors": [
         {
             "name": "rezky08",
