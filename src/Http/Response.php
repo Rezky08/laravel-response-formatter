@@ -44,18 +44,10 @@ class Response implements Responsable
 
 	const CODE_SUCCESS = '000';
 	const CODE_DATA_CREATED = '001';
-	const CODE_DATA_CREATEDS = '003';
-	const CODE_TIMEOUT = '111';
-	const CODE_ERROR = '300';
-	const CODE_ERROR_INVALID_DATA = '301';
-	const CODE_ERROR_INVALID_FILE = '302';
-	const CODE_ERROR_UNAUTHORIZED = '402';
-	const CODE_ERROR_UNAUTHENTICATED = '403';
-	const CODE_ERROR_RESOURCE_NOT_FOUND = '504';
-	const CODE_ERROR_ROUTE_NOT_FOUND = '503';
-	const CODE_ERROR_DATABASE_TRANSACTION = '505';
-	const CODE_UNDEFINED_RESPONSE = '506';
+	const CODE_ERROR_UNAUTHENTICATED = '303';
+	const CODE_ERROR_UNATHORIZED = '304';
     /** END CODE LIST HERE */
+    const CODE_UNDEFINED_RESPONSE = '506';
 
     /**
      *
@@ -104,7 +96,7 @@ class Response implements Responsable
         return $this->message;
     }
 
-    public function getResponseMessageByCode($code){
+    public function getResponseMessageByCode(&$code){
         $label = $this->getResponseLabelFromCode($code);
         $label = str_replace('CODE_','',$label);
         $label = str_replace('_',' ',$label);
@@ -122,10 +114,11 @@ class Response implements Responsable
         return LaravelResponse::HTTP_INTERNAL_SERVER_ERROR;
     }
 
-    public function getResponseLabelFromCode($code){
+    public function getResponseLabelFromCode(&$code){
         $codes = $this->getAvailableCode();
         if (!key_exists($code,$codes)){
-            $label = $codes[$this->codeList['CODE_UNDEFINED_RESPONSE']];
+            $code = self::CODE_UNDEFINED_RESPONSE;
+            $label = 'CODE_UNDEFINED_RESPONSE';
         }else{
             $label = $codes[$code];
         }
@@ -134,7 +127,7 @@ class Response implements Responsable
 
     public function formatData($data,$code){
 
-        $message = $this->message ?? $this->getResponseMessageByCode($code);
+        $message = $this->message ?: $this->getResponseMessageByCode($code);
         $response = [
             'code'    =>  $code,
             'message' =>  $message,
