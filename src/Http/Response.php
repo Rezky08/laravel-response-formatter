@@ -90,8 +90,9 @@ class Response implements Responsable
     }
 
     public function getResponseGroupByCode($code){
+        $codeLabel = $this->getResponseLabelFromCode($code);
         foreach ($this->codeGroupList as $group => $value){
-            if (in_array($code,$value)){
+            if (in_array($codeLabel,$value)){
                 return $group;
             }
         }
