@@ -30,7 +30,7 @@ after published the config will be in ```config/code.php```
 if you want to change the code, do it in ```config/code.php```
 you can add code and group or reduce code and group
 
-`code` - internal code list, not http code
+`code` - internal code list, not http code\
 `group` - internal grouping of code against http code
 
 once added, you must convert the list to constant with the command so that it can be used
