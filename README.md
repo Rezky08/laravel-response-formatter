@@ -76,7 +76,7 @@ use Rezky\ApiFormatter\Http\Response;
 class TestApiController extends Controller  
 {  
   public function index(){  
-  return new Response(Response::CODE_SUCCESS,'DATA');  
+  	return new Response(Response::CODE_SUCCESS,'DATA');  
   }  
 }
 ```
