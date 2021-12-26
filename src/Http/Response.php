@@ -1,6 +1,7 @@
 <?php
 
 namespace Rezky\ApiFormatter\Http;
+use Dflydev\DotAccessData\Data;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\JsonResponse;
@@ -34,6 +35,11 @@ class Response implements Responsable
      */
     protected array $codeGroupList;
 
+    /**
+     * @var string
+     */
+    protected string $message;
+
     /** CODE LIST HERE */
 
 	const CODE_SUCCESS = '000';
@@ -56,10 +62,11 @@ class Response implements Responsable
      * @param string $code
      * @param array|Model $data
      */
-    function __construct($code='',$data=[])
+    function __construct($code='',$data=[],$message="")
     {
         $this->data = $data;
         $this->code = $code;
+        $this->message = $message;
 
         if (config('code') !== null){
             $this->codeList = config('code.code');
@@ -79,6 +86,22 @@ class Response implements Responsable
             }
         }
         return $codes;
+    }
+
+    /**
+     * @param string $message
+     */
+    public function setMessage(string $message): void
+    {
+        $this->message = $message;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessage()
+    {
+        return $this->message;
     }
 
     public function getResponseMessageByCode($code){
@@ -111,8 +134,7 @@ class Response implements Responsable
 
     public function formatData($data,$code){
 
-        $message = $this->getResponseMessageByCode($code);
-
+        $message = $this->message ?? $this->getResponseMessageByCode($code);
         $response = [
             'code'    =>  $code,
             'message' =>  $message,
@@ -174,9 +196,8 @@ class Response implements Responsable
 
     public function responseJson($data,$code):JsonResponse
     {
-        $self = new self();
-        $httpStatus = $self->getResponseGroupByCode($code);
-        $response = $self->formatData($data,$code);
+        $httpStatus = $this->getResponseGroupByCode($code);
+        $response = $this->formatData($data,$code);
 
         return response()->json($response,$httpStatus);
     }

@@ -20,6 +20,7 @@ class Error extends Exception implements Responsable
     {
         $this->response = new Response($code,$data);
         $message = $message??$this->response->getResponseMessageByCode($code);
+        $this->response->setMessage($message);
         parent::__construct($message, $code, $previous);
     }
 
