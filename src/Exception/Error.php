@@ -16,10 +16,11 @@ class Error extends Exception implements Responsable
      * @param string $code
      * @param array $data
      */
-    public function __construct($code = '', $data=[],Throwable $previous=null)
+    public function __construct($code = '', $data=[],$message="",Throwable $previous=null)
     {
         $this->response = new Response($code,$data);
-        parent::__construct($this->response->getResponseMessageByCode($code), $code, $previous);
+        $message = $message??$this->response->getResponseMessageByCode($code);
+        parent::__construct($message, $code, $previous);
     }
 
     /**
@@ -27,8 +28,8 @@ class Error extends Exception implements Responsable
      * @param array $data
      * @return static
      */
-    public static function make($code = '', $data=[]):self{
-        return new static($code,$data);
+    public static function make($code = '', $data=[],$message=""):self{
+        return new static($code,$data,$message);
     }
 
     /** {@inheritDoc} */
