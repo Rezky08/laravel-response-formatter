@@ -23,7 +23,7 @@ add provider ```Rezky\ApiFormatter\ApiFormatterServiceProvider::class``` in file
 ```
 
 ## Publish Config
-publish config with command ```php artisan vendor:publish --provider="Rezky\ApiFormatter\ApiFormatterServiceProvider::class" --tag="config"```
+publish config with command ``php artisan vendor:publish --provider="Rezky\ApiFormatter\ApiFormatterServiceProvider::class" --tag="config"``
 after published the config will be in ```config/code.php```
 
 ## Customize Config
