@@ -34,10 +34,11 @@ class CreateApiCode extends Command
     public function __construct()
     {
         parent::__construct();
-        $this->codes = config('code.code');
-        if ($this->codes === null){
+        if (config('code') == null){
             throw new \Error("cannot load 'code' config");
         }
+        $this->codes = config('code.code');
+
     }
 
     private function createConst($codeName,$codeValue){
