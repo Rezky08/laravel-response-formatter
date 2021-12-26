@@ -13,5 +13,8 @@
             "email": "rezky.setiawan85@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=7.4",
+        "laravel/laravel": ">=v7.0.0"
+    }
 }
