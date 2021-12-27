@@ -4,7 +4,10 @@
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Rezky\\ApiFormatter\\": "src/"
+            "Rezky\\ApiFormatter\\": "src/",
+            "Rezky\\ApiFormatter\\Command\\": "command",
+            "Rezky\\ApiFormatter\\Http\\": "Http",
+            "Rezky\\ApiFormatter\\Exception\\": "Exception"
         }
     },
     "authors": [
