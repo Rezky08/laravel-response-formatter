@@ -153,3 +153,6 @@ field ``data`` following ``$data`` format
   }
 }
 ```
+
+# ADD EXCEPTION HANDLER (OPTIONAL)
+you can add 
