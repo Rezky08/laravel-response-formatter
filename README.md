@@ -1,3 +1,4 @@
+
 # API FORMATTER
 This package is made so that every response that is returned has the same format.
 
@@ -33,8 +34,29 @@ you can add code and group or reduce code and group
 `code` - internal code list, not http code\
 `group` - internal grouping of code against http code
 
-once added, you must convert the list to constant with the command so that it can be used
-``php artisan code:create``
+once added, you must convert the list to constant with the command so that it can be used\
+``php artisan code:create``\
+constant will be in ``Rezky\ApiFormatter\Http\Response``
+
+### example config
+```
+'code' => [  
+  ...
+  'CODE_SUCCESS' => '000',  
+  ...
+],
+'group' =>[  
+ Illuminate\Http\Response::HTTP_OK => [  
+  'CODE_SUCCESS'  
+  ],
+]
+```
+``CODE_SUCCESS`` - key label\
+``000`` - internal code
+
+ key label must prefixed with ``CODE_`` and is in one of the groups. otherwise default with http code ``500``
+
+
 ## End
  package ready to use
 
