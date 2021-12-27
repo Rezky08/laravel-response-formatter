@@ -42,11 +42,16 @@ class Response implements Responsable
 
     /** CODE LIST HERE */
 
+	const CODE_ERROR = '501';
+	const CODE_ERROR_INVALID_DATA = '502';
+	const CODE_ERROR_RESOURCE_NOT_FOUND = '503';
+	const CODE_ERROR_ROUTE_NOT_FOUND = '504';
+	const CODE_ERROR_UNAUTHENTICATED = '505';
+	const CODE_ERROR_UNAUTHORIZED = '506';
 	const CODE_SUCCESS = '000';
 	const CODE_DATA_CREATED = '001';
-	const CODE_ERROR_UNAUTHENTICATED = '303';
-	const CODE_ERROR_UNATHORIZED = '304';
     /** END CODE LIST HERE */
+
     const CODE_UNDEFINED_RESPONSE = '506';
 
     /**
