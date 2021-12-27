@@ -147,7 +147,7 @@ field ``data`` following ``$data`` format
     "last_item": 1,
     "total_item": 1,
     "page": 1,
-    "has_next_page": true,
+    "has_next_page": false,
     "total_page": 1,
     "per_page": 1
   }
