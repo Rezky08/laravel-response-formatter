@@ -1,13 +1,13 @@
 {
-    "name": "rezky/api-formatter",
+    "name": "rezky/laravel-response-formatter",
     "description": "result api formatter",
     "type": "library",
     "autoload": {
         "psr-4": {
-            "Rezky\\ApiFormatter\\": "src/",
-            "Rezky\\ApiFormatter\\Command\\": "Command/",
-            "Rezky\\ApiFormatter\\Http\\": "Http/",
-            "Rezky\\ApiFormatter\\Exception\\": "Exception/"
+            "Rezky\\LaravelResponseFormatter\\": "src",
+            "Rezky\\LaravelResponseFormatter\\Command\\": "Command/",
+            "Rezky\\LaravelResponseFormatter\\Http\\": "Http/",
+            "Rezky\\LaravelResponseFormatter\\Exception\\": "Exception/"
         }
     },
     "authors": [

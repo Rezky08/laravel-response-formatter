@@ -1,6 +1,6 @@
 <?php
 
-namespace Rezky\ApiFormatter\Exception;
+namespace Rezky\LaravelResponseFormatter\Exception;
 
 use App\Exceptions\Handler as LaravelHandler;
 use Illuminate\Auth\AuthenticationException;
@@ -9,8 +9,8 @@ use Illuminate\Database\QueryException;
 use Illuminate\Http\Response as LaravelResponse;
 use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Rezky\ApiFormatter\Http\Response as RezkyResponse;
-use Rezky\ApiFormatter\Exception\Error as RezkyError;
+use Rezky\LaravelResponseFormatter\Http\Response as RezkyResponse;
+use Rezky\LaravelResponseFormatter\Exception\Error as RezkyError;
 
 class Handler extends LaravelHandler {
     protected $allowEnvReport = [

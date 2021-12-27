@@ -1,11 +1,11 @@
 <?php
 
-namespace Rezky\ApiFormatter;
+namespace Rezky\LaravelResponseFormatter;
 
 use Illuminate\Support\ServiceProvider;
-use Rezky\ApiFormatter\Command\CreateApiCode;
-use Rezky\ApiFormatter\Exception\Handler;
-use Rezky\ApiFormatter\Http\Response;
+use Rezky\LaravelResponseFormatter\Command\CreateApiCode;
+use Rezky\LaravelResponseFormatter\Exception\Handler;
+use Rezky\LaravelResponseFormatter\Http\Response;
 
 class ApiFormatterServiceProvider extends ServiceProvider
 {

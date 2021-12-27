@@ -29,25 +29,19 @@ return [
 
         ],
         Illuminate\Http\Response::HTTP_FORBIDDEN =>[
-            /** dont remove */
-            'CODE_ERROR_UNAUTHORIZED',
-            'CODE_ERROR_UNAUTHENTICATED'
+
         ],
         Illuminate\Http\Response::HTTP_UNPROCESSABLE_ENTITY => [
-            /** dont remove */
-            'CODE_ERROR_INVALID_DATA',
-            'CODE_ERROR_RESOURCE_NOT_FOUND'
+
         ],
         Illuminate\Http\Response::HTTP_SERVICE_UNAVAILABLE => [
 
         ],
         Illuminate\Http\Response::HTTP_NOT_FOUND =>[
-            /** dont remove */
-            'CODE_ERROR_ROUTE_NOT_FOUND'
+
         ],
         Illuminate\Http\Response::HTTP_INTERNAL_SERVER_ERROR => [
-            /** dont remove */
-            'CODE_ERROR'
+
         ]
     ]
 ];

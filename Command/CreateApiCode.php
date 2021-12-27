@@ -1,9 +1,9 @@
 <?php
 
-namespace Rezky\ApiFormatter\Command;
+namespace Rezky\LaravelResponseFormatter\Command;
 
 use Illuminate\Console\Command;
-use Rezky\ApiFormatter\Http\Response;
+use Rezky\LaravelResponseFormatter\Http\Response;
 
 class CreateApiCode extends Command
 {

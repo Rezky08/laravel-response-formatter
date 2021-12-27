@@ -1,8 +1,8 @@
 <?php
 
-namespace Rezky\ApiFormatter\Exception;
+namespace Rezky\LaravelResponseFormatter\Exception;
 
-use Rezky\ApiFormatter\Http\Response;
+use Rezky\LaravelResponseFormatter\Http\Response;
 use Exception;
 use Illuminate\Contracts\Support\Responsable;
 use Throwable;

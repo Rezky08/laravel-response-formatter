@@ -1,5 +1,5 @@
 <?php
-namespace Rezky\ApiFormatter\Http;
+namespace Rezky\LaravelResponseFormatter\Http;
 
 use Illuminate\Http\Response as LaravelResponse;
 

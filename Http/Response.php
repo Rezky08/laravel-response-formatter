@@ -1,6 +1,6 @@
 <?php
 
-namespace Rezky\ApiFormatter\Http;
+namespace Rezky\LaravelResponseFormatter\Http;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Contracts\Support\Responsable;
 use Illuminate\Database\Eloquent\Model;
@@ -10,7 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\Response as LaravelResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
-use Rezky\ApiFormatter\Exception\Error;
+use Rezky\LaravelResponseFormatter\Exception\Error;
 
 class Response implements Responsable,Code
 {
