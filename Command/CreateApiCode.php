@@ -63,7 +63,7 @@ class CreateApiCode extends Command
         $constStartRemark = "/** CODE LIST HERE */";
         $constEndRemark = "/** END CODE LIST HERE */";
 
-        $responseFilePath = __DIR__ . "/../Http/Response.php";
+        $responseFilePath = __DIR__ . "/../Http/Code.php";
 
         $responseFile = file($responseFilePath);
 

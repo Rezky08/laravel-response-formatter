@@ -12,7 +12,7 @@ use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Rezky\ApiFormatter\Exception\Error;
 
-class Response implements Responsable
+class Response implements Responsable,Code
 {
 
     /**
@@ -40,20 +40,6 @@ class Response implements Responsable
      */
     protected string $message;
 
-    /** CODE LIST HERE */
-
-	const CODE_ERROR = '501';
-	const CODE_ERROR_INVALID_DATA = '502';
-	const CODE_ERROR_RESOURCE_NOT_FOUND = '503';
-	const CODE_ERROR_ROUTE_NOT_FOUND = '504';
-	const CODE_ERROR_UNAUTHENTICATED = '505';
-	const CODE_ERROR_UNAUTHORIZED = '506';
-	const CODE_SUCCESS = '000';
-	const CODE_DATA_CREATED = '001';
-    /** END CODE LIST HERE */
-
-    const CODE_UNDEFINED_RESPONSE = '506';
-
     /**
      *
      * @param string $code
@@ -71,6 +57,14 @@ class Response implements Responsable
         }else{
             throw new \Error("cannot find 'code' config, make sure 'code' already in your 'config' directory");
         }
+    }
+
+    public static function getDefaultCode():array{
+        return self::DEFAULT_CODE;
+    }
+
+    public static function getDefaultGroup():array{
+        return self::DEFAULT_CODE_GROUP;
     }
 
     public function getAvailableCode():array{
@@ -131,7 +125,6 @@ class Response implements Responsable
     }
 
     public function formatData($data,$code){
-
         $message = $this->message ?: $this->getResponseMessageByCode($code);
         $response = [
             'code'    =>  $code,
