@@ -6,7 +6,7 @@ This package is made so that every response that is returned has the same format
 there are several steps you have to do in order to use it properly
 
 ## Install Package
-do the installation with ```composer install rezky/api-formatter```
+do the installation with ```composer require rezky/api-formatter```
 
 ## Add Service Provider
 
