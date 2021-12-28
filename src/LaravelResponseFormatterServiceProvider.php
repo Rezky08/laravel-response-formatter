@@ -7,7 +7,7 @@ use Rezky\LaravelResponseFormatter\Command\CreateApiCode;
 use Rezky\LaravelResponseFormatter\Exception\Handler;
 use Rezky\LaravelResponseFormatter\Http\Response;
 
-class ApiFormatterServiceProvider extends ServiceProvider
+class LaravelResponseFormatterServiceProvider extends ServiceProvider
 {
 
     protected $commands = [
