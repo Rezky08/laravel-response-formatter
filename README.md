@@ -1,16 +1,15 @@
-
-# API FORMATTER
+# LARAVEL RESPONSE FORMATTER
 This package is made so that every response that is returned has the same format.
 
 # HOW TO INSTALL
 there are several steps you have to do in order to use it properly
 
 ## Install Package
-do the installation with ```composer require rezky/api-formatter```
+do the installation with ```composer require rezky/laravel-response-formatter```
 
 ## Add Service Provider
 
-add provider ```Rezky\ApiFormatter\ApiFormatterServiceProvider::class``` in file ```config/app.php```
+add provider ```Rezky\LaravelResponseFormatter\LaravelResponseFormatterServiceProvider::class``` in file ```config/app.php```
 ``` 
  ...
 'providers' => [
@@ -18,13 +17,13 @@ add provider ```Rezky\ApiFormatter\ApiFormatterServiceProvider::class``` in file
 /*  
  * Application Service Providers... 
  */
- Rezky\ApiFormatter\ApiFormatterServiceProvider::class,
+ Rezky\LaravelResponseFormatter\LaravelResponseFormatterServiceProvider::class,
  ...
 ]
 ```
 
 ## Publish Config
-publish config with command ``php artisan vendor:publish --provider="Rezky\ApiFormatter\ApiFormatterServiceProvider::class" --tag="config"``\
+publish config with command ``php artisan vendor:publish --provider="Rezky\LaravelResponseFormatter\LaravelResponseFormatterServiceProvider::class" --tag="config"``\
 after published the config will be in ```config/code.php```
 
 ## Customize Config
@@ -36,10 +35,13 @@ you can add code and group or reduce code and group
 
 once added, you must convert the list to constant with the command so that it can be used\
 ``php artisan code:create``\
-constant will be in ``Rezky\ApiFormatter\Http\Response``
+constant will be in ``Rezky\LaravelResponseFormatter\Http\Response``
 
 ### example config
 ```
+'handler' => [  
+  'override' => false  
+],
 'code' => [  
   ...
   'CODE_SUCCESS' => '000',  
@@ -54,11 +56,11 @@ constant will be in ``Rezky\ApiFormatter\Http\Response``
 ``CODE_SUCCESS`` - key label\
 ``000`` - internal code
 
- key label must prefixed with ``CODE_`` and is in one of the groups. otherwise default with http code ``500``
+key label must prefixed with ``CODE_`` and is in one of the groups. otherwise default with http code ``500``
 
 
 ## End
- package ready to use
+package ready to use
 
 # Example
 ## Throw Error
@@ -66,7 +68,7 @@ If **throw error** is used, the program will stop on that line and return an err
 
 ```
 ...
-use Rezky\ApiFormatter\Exception\Error;
+use Rezky\LaravelResponseFormatter\Exception\Error;
 ...
 
 class TestApiController extends Controller  
@@ -92,7 +94,7 @@ it will return
 ## Return Response
 ```
 ...
-use Rezky\ApiFormatter\Http\Response;
+use Rezky\LaravelResponseFormatter\Http\Response;
 ...
 
 class TestApiController extends Controller  
@@ -102,7 +104,7 @@ class TestApiController extends Controller
   }  
 }
 ```
-it will return 
+it will return
 ```
 {
 	"code": "000",
@@ -131,17 +133,17 @@ field ``data`` following ``$data`` format
   "code": "000",
   "message": "success",
   "data": [
-    "test"
+    "DATA"
   ]
 }
 ```
-### With Paginator 
+### With Paginator
 ```
 {
   "code": "000",
   "message": "success",
   "data": [
-    "ini data"
+    "DATA"
   ],
   "paginator": {
     "last_item": 1,
@@ -154,5 +156,23 @@ field ``data`` following ``$data`` format
 }
 ```
 
-# ADD EXCEPTION HANDLER (OPTIONAL)
-you can add 
+# EXCEPTION HANDLER
+
+in the config, there is an override handler parameter. if it is changed to true, then every error covered in the case will be returned according to the format.
+**there is config**
+```
+'handler' => [  
+  'override' => false  
+],
+...
+
+```
+\
+the classes to be converted into the format :
+- ``Illuminate\Database\QueryException``
+- ``Illuminate\Validation\ValidationException``
+- ``Illuminate\Auth\AuthenticationException``
+- ``Illuminate\Database\Eloquent\ModelNotFoundException``
+- ``\ArgumentCountError``
+- ``\Error``
+- ``HttpException``
