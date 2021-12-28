@@ -118,8 +118,8 @@ it will return
 |---------------------------|---------------------------|
 | ``\Illuminate\Database\Eloquent\Model``| ``data`` => ``array`` |
 | ``\Illuminate\Support\Collection``| ``data`` => ``array`` |
-| ``\Illuminate\Pagination\LengthAwarePaginator``| ``data`` => ``array``\ with ``paginator``|	
-| ``\Illuminate\Http\Resources\Json\JsonResource``| ``data`` => ``array ``/``object``\ with/without ``paginator``|	
+| ``\Illuminate\Pagination\LengthAwarePaginator``| ``data`` => ``array``  with ``paginator``|	
+| ``\Illuminate\Http\Resources\Json\JsonResource``| ``data`` => ``array ``/``object`` and with/without ``paginator``|	
 
 
 
