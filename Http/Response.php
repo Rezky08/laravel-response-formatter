@@ -178,6 +178,9 @@ class Response implements Responsable,Code
                 }else{
                     $data = $data->response();
                     $response['data'] = $data->getData(true);
+                    if (isset($response['data']['data'])){
+                        $response['data'] = $response['data']['data'];
+                    }
                 }
                 break;
         }
