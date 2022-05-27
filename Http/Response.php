@@ -12,6 +12,7 @@ use Illuminate\Http\Response as LaravelResponse;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Validation\ValidationException;
 use Rezky\LaravelResponseFormatter\Exception\Error;
 
 class Response implements Responsable, Code
@@ -237,6 +238,8 @@ class Response implements Responsable, Code
     {
         if ($request->expectsJson()) {
             return $this->responseJson($this->data, $this->code);
+        }else{
+            throw ValidationException::withMessages($this->data);
         }
     }
 }
