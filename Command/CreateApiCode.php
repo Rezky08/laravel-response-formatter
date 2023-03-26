@@ -3,10 +3,12 @@
 namespace Rezky\LaravelResponseFormatter\Command;
 
 use Illuminate\Console\Command;
+use Rezky\LaravelResponseFormatter\Console\Commands\GenerateConstant;
 use Rezky\LaravelResponseFormatter\Http\Response;
 
-class CreateApiCode extends Command
+class CreateApiCode extends GenerateConstant
 {
+    protected string $prefix = "CODE";
     /**
      * The name and signature of the console command.
      *
@@ -38,65 +40,8 @@ class CreateApiCode extends Command
             throw new \Error("cannot load 'code' config");
         }
         $this->codes = config('code.code');
+        $this->filePath = __DIR__ . "/../Http/Code.php";
 
     }
 
-    private function createConst($codeName,$codeValue){
-        //check is has prefix CODE
-        $codeName = strtoupper($codeName);
-        if (!str_starts_with($codeName,'CODE_')){
-            $codeName = 'CODE_'.$codeName;
-        }
-
-        return "\tconst {$codeName} = '{$codeValue}';\n";
-
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
-    public function handle()
-    {
-        $prefix = "CODE";
-        $constStartRemark = "/** CODE LIST HERE */";
-        $constEndRemark = "/** END CODE LIST HERE */";
-
-        $responseFilePath = __DIR__ . "/../Http/Code.php";
-
-        $responseFile = file($responseFilePath);
-
-        // get code put location
-        $lineConstStart = -1;
-        $lineConstEnd = -1;
-        foreach ($responseFile as $line=>$lineContent){
-            if (strpos($lineContent,$constStartRemark) > -1){
-                $lineConstStart = $line;
-            }else if (strpos($lineContent,$constEndRemark) > -1){
-                $lineConstEnd = $line;
-            }
-
-            if ($lineConstStart != -1 && $lineConstEnd != -1){
-                break;
-            }
-        }
-
-        $responseFileHead = array_slice($responseFile,0,$lineConstStart+1);
-        $responseFileFooter = array_slice($responseFile,$lineConstEnd);
-
-        $responseFileCodeConsts = [];
-        $responseFileCodeConsts[] = "\n";
-
-        foreach ($this->codes as $codeName => $codeValue){
-            $responseFileCodeConsts[] = $this->createConst($codeName,$codeValue);
-        }
-
-        $responseFile = array_merge(array_values($responseFileHead),array_values($responseFileCodeConsts),array_values($responseFileFooter));
-
-        $fp = fopen($responseFilePath,'w');
-        fwrite($fp,implode("",$responseFile));
-        fclose($fp);
-        return true;
-    }
 }
