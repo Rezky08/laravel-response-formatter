@@ -3,7 +3,7 @@
 namespace Rezky\LaravelResponseFormatter\Command;
 
 use Illuminate\Console\Command;
-use Rezky\LaravelResponseFormatter\Commands\GenerateConstant;
+use Rezky\LaravelResponseFormatter\Command\GenerateConstant;
 use Rezky\LaravelResponseFormatter\Http\Response;
 
 class CreateApiCode extends GenerateConstant
