@@ -1,6 +1,6 @@
 <?php
 
-namespace Rezky\LaravelResponseFormatter\Console\Commands;
+namespace Rezky\LaravelResponseFormatter\Commands;
 
 use Illuminate\Console\Command;
 
