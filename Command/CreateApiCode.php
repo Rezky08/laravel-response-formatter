@@ -3,7 +3,6 @@
 namespace Rezky\LaravelResponseFormatter\Command;
 
 use Illuminate\Console\Command;
-use Rezky\LaravelResponseFormatter\Command\GenerateConstant;
 use Rezky\LaravelResponseFormatter\Http\Response;
 
 class CreateApiCode extends GenerateConstant
@@ -39,7 +38,7 @@ class CreateApiCode extends GenerateConstant
         if (config('code') == null){
             throw new \Error("cannot load 'code' config");
         }
-        $this->codes = config('code.code');
+        $this->consts = config('code.code');
         $this->filePath = __DIR__ . "/../Http/Code.php";
 
     }
