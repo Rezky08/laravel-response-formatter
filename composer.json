@@ -5,6 +5,8 @@
     "autoload": {
         "psr-4": {
             "Rezky\\LaravelResponseFormatter\\": "src",
+            "Rezky\\LaravelResponseFormatter\\Models\\": "Models/",
+            "Rezky\\LaravelResponseFormatter\\seeders\\": "database/seeders/",
             "Rezky\\LaravelResponseFormatter\\Command\\": "Command/",
             "Rezky\\LaravelResponseFormatter\\Http\\": "Http/",
             "Rezky\\LaravelResponseFormatter\\Exception\\": "Exception/"

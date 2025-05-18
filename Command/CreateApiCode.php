@@ -13,7 +13,7 @@ class CreateApiCode extends GenerateConstant
      *
      * @var string
      */
-    protected $signature = 'code:create';
+    protected $signature = 'code:create {--use-database=}';
 
     /**
      * The console command description.

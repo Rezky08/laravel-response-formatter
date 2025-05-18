@@ -22,6 +22,7 @@ class LaravelResponseFormatterServiceProvider extends ServiceProvider
     public function register()
     {
         $this->commands($this->commands);
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
         if ($this->app['config']->get('code') === null){
             $this->app['config']->set('code',require __DIR__."/../config/code.php");
@@ -49,5 +50,6 @@ class LaravelResponseFormatterServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([__DIR__."/../config/code.php" => config_path('code.php')],'config');
+        $this->publishes([__DIR__.'/../database/migrations' => database_path('migrations')],'migrations');
     }
 }

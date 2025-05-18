@@ -3,6 +3,7 @@
 namespace Rezky\LaravelResponseFormatter\Command;
 
 use Illuminate\Console\Command;
+use Rezky\LaravelResponseFormatter\Models\ResponseRemark;
 
 class GenerateConstant extends Command
 {
@@ -60,6 +61,10 @@ class GenerateConstant extends Command
      */
     public function handle()
     {
+        dd($this->hasOption('use-database'));
+        if (!($this->hasOption('use-database') && filter_var($this->option('use-database'),FILTER_VALIDATE_BOOL) === false)) {
+            $this->loadConfigFromDB();
+        }
         $constStartRemark = "/** {$this->prefix} LIST HERE */";
         $constEndRemark = "/** END {$this->prefix} LIST HERE */";
         $this->info("find start line ".$constStartRemark);
@@ -104,5 +109,11 @@ class GenerateConstant extends Command
         fwrite($fp,implode("",$scriptFile));
         fclose($fp);
         return true;
+    }
+
+    protected function loadConfigFromDB()
+    {
+        $responseRemarks = ResponseRemark::all();
+        dd($responseRemarks);
     }
 }
