@@ -82,6 +82,9 @@ class ResponseRemarkSeeder extends Seeder
         ];
 
         foreach ($response_remarks as $response_remark) {
+            if (ResponseRemark::query()->where('resp_code', $response_remark['resp_code'])->exists()){
+                continue;
+            }
             $respRemark = new ResponseRemark($response_remark);
             $respRemark->save();
         }
