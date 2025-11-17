@@ -53,11 +53,14 @@ class Response implements Responsable, Code
 
     /**
      *
-     * @param string $code
+     * @param string|\BackedEnum $code
      * @param array|Model $data
      */
     function __construct($code = '', $data = [], $message = "", $paginatorType = self::PAGINATOR_TYPE_DEFAULT)
     {
+        if ($code instanceof \BackedEnum){
+            $code = $code->value;
+        }
         $this->data = $data;
         $this->code = $code;
         $this->message = $message;

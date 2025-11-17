@@ -3,22 +3,22 @@
 namespace Rezky\LaravelResponseFormatter;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Cache;
+use Rezky\LaravelResponseFormatter\Command\CacheResponseCodeRemark;
 use Rezky\LaravelResponseFormatter\Command\CreateApiCode;
 use Rezky\LaravelResponseFormatter\Exception\Handler;
 use Rezky\LaravelResponseFormatter\Http\Response;
+
 
 class LaravelResponseFormatterServiceProvider extends ServiceProvider
 {
 
     protected $commands = [
-        CreateApiCode::class
+        CreateApiCode::class,
+        CacheResponseCodeRemark::class
     ];
 
-    /**
-     * Register services.
-     *
-     * @return void
-     */
+
     public function register()
     {
         $this->commands($this->commands);
@@ -42,14 +42,17 @@ class LaravelResponseFormatterServiceProvider extends ServiceProvider
 
     }
 
-    /**
-     * Bootstrap services.
-     *
-     * @return void
-     */
+
     public function boot()
     {
+        if (!$this->app->runningInConsole() && Cache::has('response_formatter.codes')) {
+            $this->app['config']->set('code.code', Cache::get('response_formatter.codes'));
+        }
+        if (!$this->app->runningInConsole() && Cache::has('response_formatter.groups')) {
+            $this->app['config']->set('code.group', Cache::get('response_formatter.groups'));
+        }
         $this->publishes([__DIR__."/../config/code.php" => config_path('code.php')],'config');
         $this->publishes([__DIR__.'/../database/migrations' => database_path('migrations')],'migrations');
+        $this->publishes([__DIR__.'/../database/seeders' => database_path('seeders')],'seeders');
     }
 }

@@ -14,12 +14,15 @@ return new class extends Migration
 
         Schema::create('response_remarks', function (Blueprint $table) {
             $table->id();
-            $table->string('resp_code')->unique();
-            $table->string('resp_desc');
-            $table->enum('resp_type',\Rezky\LaravelResponseFormatter\Models\ResponseRemark::getAvailableResponseTypes());
-            $table->string('resp_group')->comment(\Illuminate\Support\Arr::join(\Rezky\LaravelResponseFormatter\Models\ResponseRemark::getAvailableResponseGroup(),','));
-            $table->enum('http_code',array_keys(\Illuminate\Http\Response::$statusTexts));
-            $table->string('const_name')->nullable()->unique();
+            $table->string('resp_code')->unique()->comment('Kode respon unik yang akan dikirim di API.');
+            $table->string('resp_desc')->comment('Deskripsi dari kode respon.');
+            $table->string('resp_type')->index()->comment('Tipe respon, cth: SUCCESS, FAILED, VALIDATION_ERROR.');
+
+            $table->string('resp_group')->index()->comment('Grup fungsional dari respon, cth: AUTH, PAYMENT, USER.');
+            $table->unsignedSmallInteger('http_code')->default(\Illuminate\Http\Response::HTTP_OK)->comment('Kode status HTTP yang sesuai.');
+
+            $table->string('const_name')->nullable()->unique()->comment('Nama konstanta/enum case yang akan digenerasi, cth: CODE_SUCCESS.');
+
         });
     }
 

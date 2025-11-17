@@ -13,11 +13,14 @@ class Error extends Exception implements Responsable
     protected Response $response;
 
     /**
-     * @param string $code
+     * @param string|\BackedEnum $code
      * @param array $data
      */
     public function __construct($code = '', $data=[],$message="",Throwable $previous=null)
     {
+        if ($code instanceof \BackedEnum){
+            $code = $code->value;
+        }
         $this->response = new Response($code,$data);
         $message = $message??$this->response->getResponseMessageByCode($code);
         $this->response->setMessage($message);

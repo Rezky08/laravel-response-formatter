@@ -2,8 +2,6 @@
 
 namespace Rezky\LaravelResponseFormatter\Command;
 
-use Illuminate\Console\Command;
-use Rezky\LaravelResponseFormatter\Http\Response;
 
 class CreateApiCode extends GenerateConstant
 {
@@ -13,19 +11,15 @@ class CreateApiCode extends GenerateConstant
      *
      * @var string
      */
-    protected $signature = 'code:create {--use-database=}';
+    // Perbarui signature untuk menjadi flag boolean sederhana
+    protected $signature = 'code:create {--use-database}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'convert configs code into consts at '.Response::class;
-
-    /**
-     * @var array
-     */
-    protected array $codes;
+    protected $description = 'Create a new string enum from the "code" config file or database.';
 
     /**
      * Create a new command instance.
@@ -35,12 +29,34 @@ class CreateApiCode extends GenerateConstant
     public function __construct()
     {
         parent::__construct();
-        if (config('code') == null){
-            throw new \Error("cannot load 'code' config");
-        }
-        $this->consts = config('code.code');
-        $this->filePath = __DIR__ . "/../Http/Code.php";
+    }
 
+    /**
+     * Execute the console command.
+     *
+     * @return int
+     */
+    public function handle()
+    {
+
+        $name = 'ResponseCode';
+        $this->filePath = app_path("Enums/Http/ResponseCode.php");
+
+        $this->generationMode = 'enum';
+
+        $this->targetNamespace = 'App\Enums\Http';
+
+        $this->targetEnumName = $name;
+
+        if (config('code') == null) {
+            $this->error("cannot load 'code' config file");
+            if (!$this->option('use-database')) {
+                 return false;
+            }
+        } else {
+            $this->configData = config('code.code');
+        }
+        return parent::handle();
     }
 
 }

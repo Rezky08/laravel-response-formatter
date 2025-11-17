@@ -2,7 +2,7 @@
 
 namespace Rezky\LaravelResponseFormatter\Exception;
 
-use App\Exceptions\Handler as LaravelHandler;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -12,7 +12,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Rezky\LaravelResponseFormatter\Http\Response as RezkyResponse;
 use Rezky\LaravelResponseFormatter\Exception\Error as RezkyError;
 
-class Handler extends LaravelHandler {
+class Handler extends ExceptionHandler {
     protected $allowEnvReport = [
         'local',
         'staging'
